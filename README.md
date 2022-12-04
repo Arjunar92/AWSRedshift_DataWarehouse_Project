@@ -16,7 +16,7 @@ As part of the project, we are going to:
 * Test our database and ETL pipeline by running queries given to us by the analytics team from Sparkify and compare your results with their expected results.
 
 
-### Project Datasets
+### a. Project Datasets
 
 We are going to work with two datasets that reside in S3. Here are the S3 links for each:
 
@@ -60,7 +60,7 @@ The log files in the dataset you'll be working with are partitioned by year and 
 And below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
 
 
-### Schema for Song Play Analysis
+### b. Schema for Song Play Analysis
 
 Using the song and event datasets, we created a star schema optimized for queries on song play analysis. This includes the following tables.
 
