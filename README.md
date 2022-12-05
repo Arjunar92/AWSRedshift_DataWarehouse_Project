@@ -95,10 +95,11 @@ Below are steps you can follow to complete each component of this project.
 
 
 #### Build ETL Pipeline
-1. Implement the logic in etl.py to load data from S3 to staging tables on Redshift.
-2. Implement the logic in etl.py to load data from staging tables to analytics tables on Redshift.
-3. Test by running etl.py after running create_tables.py and running the analytic queries on your Redshift database to compare your results with the expected results.
-4. Delete your redshift cluster when finished.
+1. Write SQL CREATE statements to create staging tables and SQL INSERT statements to injest data from S3 buckets to staging tables in sql_queries.py. 
+2. Implement the logic in etl.py to load data from S3 to staging tables on Redshift.
+3. Implement the logic in etl.py to load data from staging tables to analytics tables on Redshift.
+4. Test by running etl.py after running create_tables.py and running the analytic queries on your Redshift database to compare your results with the expected results.
+5. Delete your redshift cluster when finished.
 
 
 #### Project Execution
