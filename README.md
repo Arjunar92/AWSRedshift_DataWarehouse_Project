@@ -58,7 +58,7 @@ The log files in the dataset you'll be working with are partitioned by year and 
 * log_data/2018/11/2018-11-12-events.json
 * log_data/2018/11/2018-11-13-events.json
 And below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
-
+![mpp](images/MPP.png)
 
 ### b. Schema for Song Play Analysis
 
@@ -99,11 +99,11 @@ Below are steps you can follow to complete each component of this project.
 4. Delete your redshift cluster when finished.
 
 
-#### Project structure
+#### Project Execution
+Write sql queries in sql_queries.py and then run the floowing scripts to execute and check the project results. 
 
-1. dhw.cfg - This file has all credentials and information about AWS resources to connect to AWS.
-2. create_tables.py - This script will drop old tables (if exist) ad re-create new tables
-3. etl.py - This script orchestrate ETL.
-4. sql_queries.py - This is the ETL. All the transformatios in SQL are done here.
+1. create_tables.py - This script will drop old tables (if exist) ad re-create new tables
+2. etl.py - This script orchestrate ETL.
+3. analytics.py - This scripts gives the counts of rows in each table. 
 
-# AWSRedshift_DateWarehouse_Project
+Note:   - Update all the credentials and information about AWS in dhw.cfg before running the scripts.  
