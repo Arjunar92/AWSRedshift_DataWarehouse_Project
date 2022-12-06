@@ -102,11 +102,14 @@ Below are steps you can follow to complete each component of this project.
 5. Delete your redshift cluster when finished.
 
 
-#### Project Execution
-Write sql queries in sql_queries.py and then run the floowing scripts to execute and check the project results. 
+## Project Structure
 
-1. create_tables.py - This script will drop old tables (if exist) ad re-create new tables
-2. etl.py - This script orchestrate ETL.
-3. analytics.py - This scripts gives the counts of rows in each table. 
+```
+Cloud Data Warehouse
+|____create_tables.py    # database/table creation script/drop old tables (if exist) ad re-create new tables
+|____etl.py              # ELT builder
+|____sql_queries.py      # SQL query collections
+|____dwh.cfg             # AWS configuration file
+|____analytics.py        # testing
+```
 
-Note:   - Update all the credentials and information about AWS in dhw.cfg before running the scripts.  
