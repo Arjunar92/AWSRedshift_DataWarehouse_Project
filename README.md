@@ -102,7 +102,7 @@ Below are steps you can follow to complete each component of this project.
 5. Delete your redshift cluster when finished.
 
 
-## Project Structure
+## 4. Project Structure
 
 ```
 Cloud Data Warehouse
