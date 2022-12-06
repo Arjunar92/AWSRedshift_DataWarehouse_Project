@@ -4,18 +4,33 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
+    
+    """
+    Executes queries to load from S3 bucket to Redshift cluster
+    """
+               
     for query in copy_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def insert_tables(cur, conn):
+    
+    """
+    Executes queries to insert data into the Star Schema
+    """
+    
     for query in insert_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def main():
+    
+    """
+    First creates the staging tables with idata from the S3 bucket and then inserts the date into the fact
+    and dimension tables
+     """    
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 

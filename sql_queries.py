@@ -15,22 +15,22 @@ SONG_DATA = config.get("S3", "SONG_DATA")
 
 staging_events_table_drop = "DROP TABLE IF EXISTS staging_events"
 staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs"
-songplay_table_drop = "DROP TABLE IF EXISTS fact_songplay"
-user_table_drop = "DROP TABLE IF EXISTS dim_user"
-song_table_drop = "DROP TABLE IF EXISTS dim_song"
-artist_table_drop = "DROP TABLE IF EXISTS dim_artist"
-time_table_drop = "DROP TABLE IF EXISTS dim_time"
+songplay_table_drop = "DROP TABLE IF EXISTS songplays"
+user_table_drop = "DROP TABLE IF EXISTS users"
+song_table_drop = "DROP TABLE IF EXISTS songs"
+artist_table_drop = "DROP TABLE IF EXISTS artists"
+time_table_drop = "DROP TABLE IF EXISTS time"
 
 
 # CREATE TABLES
 
 staging_events_table_create= ("""CREATE TABLE IF NOT EXISTS staging_events(
-                                artist          varchar(MAX),
-                                auth            varchar(MAX), 
-                                firstName       varchar(MAX),
+                                artist          varchar(50),
+                                auth            varchar(50), 
+                                firstName       varchar(50),
                                 gender          char,   
                                 itemInSession   int,
-                                lastName        varchar(MAX),
+                                lastName        varchar(50),
                                 length          float,
                                 level           varchar, 
                                 location        varchar,
@@ -38,7 +38,7 @@ staging_events_table_create= ("""CREATE TABLE IF NOT EXISTS staging_events(
                                 page            varchar,
                                 registration    varchar,
                                 sessionId       int,
-                                song            varchar(MAX),
+                                song            varchar(50),
                                 status          int,
                                 ts              timestamp,
                                 userAgent       varchar,
@@ -50,9 +50,9 @@ staging_songs_table_create = ("""CREATE TABLE IF NOT EXISTS staging_songs(
                                 artist_latitude float, 
                                 artist_longitude float, 
                                 artist_location varchar, 
-                                artist_name varchar(MAX), 
+                                artist_name varchar(50), 
                                 song_id varchar, 
-                                title varchar(MAX), 
+                                title varchar(50), 
                                 duration float,
                                 year int)""")
 
@@ -66,31 +66,31 @@ songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays(
                             songplay_id INT IDENTITY(1, 1) PRIMARY KEY,
                             start_time timestamp NOT NULL SORTKEY,
                             user_id int          NOT NULL,
-                            level varchar(MAX),
-                            artist_id varchar(MAX) NOT NULL DISTKEY,
-                            song_id varchar(MAX) NOT NULL,
+                            level varchar(50),
+                            artist_id varchar(50) NOT NULL DISTKEY,
+                            song_id varchar(50) NOT NULL,
                             session_id int,
                             location text,
                             user_agent text)""")
 
 user_table_create = ("""CREATE TABLE IF NOT EXISTS users(
                         user_id int              NOT NULL SORTKEY PRIMARY KEY,
-                        first_name varchar(MAX)       NOT NULL,
-                        last_name varchar(MAX)        NOT NULL,
+                        first_name varchar(50)       NOT NULL,
+                        last_name varchar(50)        NOT NULL,
                         gender char,
                         level varchar)""")
 
 song_table_create = ("""CREATE TABLE IF NOT EXISTS songs(
                         song_id varchar          NOT NULL SORTKEY PRIMARY KEY, 
-                        title varchar(MAX),
-                        artist_id varchar(MAX),
+                        title varchar(50),
+                        artist_id varchar,
                         year int ,
                         duration float)""")
 
 artist_table_create = ("""CREATE TABLE IF NOT EXISTS artists(
-                        artist_id varchar(MAX)        NOT NULL SORTKEY PRIMARY KEY,
-                        artist_name varchar(MAX), 
-                        artist_location varchar(MAX), 
+                        artist_id varchar        NOT NULL SORTKEY PRIMARY KEY,
+                        artist_name varchar(50), 
+                        artist_location varchar, 
                         artist_latitude float,
                         artist_longitude float)""")
 
@@ -143,7 +143,7 @@ songplay_table_insert = ("""
                                 se.userAgent
                         FROM staging_events as se 
                         INNER JOIN staging_songs as ss
-                        ON se.artist = ss.artist_name AND se.song = ss.title AND se.length = ss.duration
+                        ON se.artist = ss.artist_name AND se.song = ss.title
                         WHERE se.page = 'NextSong'
                         
 """)
